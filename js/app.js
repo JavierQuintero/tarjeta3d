@@ -8,7 +8,6 @@ const purchase = document.querySelector(".purchase");
 const description = document.querySelector(".info h3");
 const dataInfo = document.querySelector(".info .conta");
 const sizes = document.querySelector(".sizes");
-console.log(sizes)
 
 //Moving Animation Event
 container.addEventListener("mousemove", (e) => {
