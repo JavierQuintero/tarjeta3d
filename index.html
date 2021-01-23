@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3d Card Effect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="sneaker">
+                <div class="circle"></div>
+                <img src="./virus.svg" alt="adidas">
+            </div>
+            <div class="info">
+                <h1 class="title">Covid-19 en <span class="paisCovid">Colombia</span></h1>
+                <h3>TOTAL CONTAGIADOS.</h3>
+                <p class="conta">000000</p>
+                <div class="sizes">
+                    <button>39</button>
+                    <button>40</button>
+                    <button class="active">42</button>
+                    <button>44</button>
+                </div>
+                <div class="purchase">
+                    <button>Recuperados: <span class="userRecupe"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+    <script>
+        const $pC = document.querySelector('.info .paisCovid');
+        const $p = document.querySelector('.info .conta');
+        const $uR = document.querySelector('.info .userRecupe');
+        
+        const renderText = (html, t) => html.textContent = t
+
+        fetch('https://api.covid19api.com/summary')
+        .then(covidData => covidData.json())
+        .then(pais => pais.Countries[35])//Colombia = 35
+		.then(data => {
+            renderText($pC, data.Country)
+            renderText($p, data.TotalConfirmed)
+            renderText($uR, data.TotalRecovered)
+        })
+    	.catch(e => console.log(e));
+    </script>
+</body>
+</html>
